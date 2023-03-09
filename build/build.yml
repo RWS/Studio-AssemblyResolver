@@ -1,0 +1,36 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+  major: '1'
+  minor: '0'
+
+name: '$(major).$(minor).$(buildRevision)'
+
+steps:
+- task: NuGetToolInstaller@1
+- task: VSBuild@1
+  name: BuildSolution
+  inputs:
+    solution: '$(solution)'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  name: PackNuGet
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/Studio.AssemblyResolver.csproj'
+    versioningScheme: 'byBuildNumber'
+- task: PublishBuildArtifacts@1
+  name: PublishNuGet
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'Studio-AssemblyResolver'
+    publishLocation: 'Container'
