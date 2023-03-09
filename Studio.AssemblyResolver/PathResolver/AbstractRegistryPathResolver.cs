@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using Microsoft.Win32;
 
 namespace Studio.AssemblyResolver.PathResolver
 {
     public abstract class AbstractRegistryPathResolver : IPathResolver
     {
-        internal const string InstallLocation64Bit = @"SOFTWARE\Wow6432Node\SDL";
+        internal string InstallLocation64Bit = @"SOFTWARE\Wow6432Node\SDL";
         internal const string InstallLocation32Bit = @"SOFTWARE\SDL";
         internal const string InstallLocationKey = "InstallLocation";
 
@@ -20,9 +21,18 @@ namespace Studio.AssemblyResolver.PathResolver
 
             try
             {
-                var registryPath = Environment.Is64BitOperatingSystem
-                    ? string.Format(@"{0}\{1}", InstallLocation32Bit, GetStudioVersion())
-                    : string.Format(@"{0}\{1}", InstallLocation64Bit, GetStudioVersion());
+                var studioVersion = GetStudioVersion();
+
+                var regex = new Regex("\\d+");
+                var match = regex.Match(studioVersion);
+
+                var registryPath = int.TryParse(match.ToString(), out var versionNo) && versionNo > 16
+                    ? $"SOFTWARE\\Wow6432Node\\Trados\\{studioVersion}"
+                    : Environment.Is64BitOperatingSystem
+                        ? $@"{InstallLocation64Bit}\{studioVersion}"
+                        : $@"{InstallLocation32Bit}\{studioVersion}";
+                
+
                 var registryKey = Registry.LocalMachine.OpenSubKey(registryPath);
                 if (registryKey != null) path = registryKey.GetValue(InstallLocationKey,false) as string;
             }

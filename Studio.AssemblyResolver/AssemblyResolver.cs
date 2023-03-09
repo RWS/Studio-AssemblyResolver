@@ -10,7 +10,6 @@ namespace Studio.AssemblyResolver
         public static StudioAssemblyResolver WithPathResolver(IEnumerable<IPathResolver> resolvers)
         {
             var assemblyResolver = new StudioAssemblyResolver(resolvers);
-
             return assemblyResolver;
         }
 

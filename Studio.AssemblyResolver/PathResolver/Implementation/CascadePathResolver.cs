@@ -10,9 +10,9 @@ namespace Studio.AssemblyResolver.PathResolver.Implementation
        
         public string Resolve()
         {
-            foreach (var pathResolver in Nodes.Where(pathResolver => Specification.IsSatisfiedBy(pathResolver.Resolve())))
+            foreach (var node in Nodes.Select(pathResolver => pathResolver.Resolve()))
             {
-                return pathResolver.Resolve();
+                if (Specification.IsSatisfiedBy(node)) return node;
             }
             return string.Empty;
         }

@@ -36,14 +36,16 @@ namespace Studio.AssemblyResolver
                 Specification = new DefaultPathSpecification(),
                 Nodes = _resolvers.Concat(new IPathResolver[]
                 {
+                    new DefaultStudio2022PathResolver(),
+                    new RegistryStudio2022PathResolver(),
                     new DefaultStudio2021PathResolver(),
                     new RegistryStudio2021PathResolver(),
                     new DefaultStudio2019PathResolver(),
                     new RegistryStudio2019PathResolver(),
-                    new DefaultStudio2017PathResolver(), 
+                    new DefaultStudio2017PathResolver(),
                     new RegistryStudio2017PathResolver(),
-                    new DefaultStudio2015PathResolver(), 
-                    new RegistryStudio2015PathResolver(), 
+                    new DefaultStudio2015PathResolver(),
+                    new RegistryStudio2015PathResolver(),
                     new DefaultStudio2014PathResolver(),
                     new RegistryStudio2014PathResolver(),
                     new DefaultStudio2011PathResolver(),
@@ -58,7 +60,7 @@ namespace Studio.AssemblyResolver
             var folderPath = Path.GetDirectoryName(AssemblyResolver.StudioPath);
             if (folderPath == null) return null;
             var assemblyPath = Path.Combine(folderPath, new AssemblyName(args.Name).Name + ".dll");
-            if (File.Exists(assemblyPath) == false) return null;
+            if (!File.Exists(assemblyPath)) return null;
             var assembly = Assembly.LoadFrom(assemblyPath);
             return assembly;
         }
