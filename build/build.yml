@@ -15,6 +15,13 @@ name: '$(major).$(minor).$(buildRevision)'
 
 steps:
 - task: NuGetToolInstaller@1
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'restore'
+    restoreSolution: '**/*.sln'
+    feedsToUse: 'select'
+
 - task: VSBuild@1
   name: BuildSolution
   inputs:
