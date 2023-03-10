@@ -33,7 +33,7 @@ steps:
   name: PackNuGet
   inputs:
     command: 'pack'
-    packagesToPack: '**/Studio.AssemblyResolver.csproj'
+    packagesToPack: '**/StudioAssemblyResolver.csproj'
     versioningScheme: 'byBuildNumber'
 - task: PublishBuildArtifacts@1
   name: PublishNuGet
