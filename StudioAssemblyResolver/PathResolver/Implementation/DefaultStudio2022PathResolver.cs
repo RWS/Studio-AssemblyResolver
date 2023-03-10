@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Studio.AssemblyResolver.PathResolver.Implementation
+namespace StudioAssemblyResolver.PathResolver.Implementation
 {
     public class DefaultStudio2022PathResolver : IPathResolver
     {

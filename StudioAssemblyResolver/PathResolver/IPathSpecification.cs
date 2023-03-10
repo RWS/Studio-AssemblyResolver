@@ -1,4 +1,4 @@
-﻿namespace Studio.AssemblyResolver.PathResolver
+﻿namespace StudioAssemblyResolver.PathResolver
 {
     public interface IPathSpecification
     {

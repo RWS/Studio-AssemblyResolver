@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Studio.AssemblyResolver.PathResolver;
-using Studio.AssemblyResolver.PathResolver.Implementation;
+using StudioAssemblyResolver.PathResolver;
+using StudioAssemblyResolver.PathResolver.Implementation;
 
-namespace Studio.AssemblyResolver
+namespace StudioAssemblyResolver
 {
     public class StudioAssemblyResolver
     {
@@ -24,7 +24,7 @@ namespace Studio.AssemblyResolver
 
         public void Resolve()
         {
-            AssemblyResolver.StudioPath = TryGetStudioPath();
+            global::StudioAssemblyResolver.AssemblyResolver.StudioPath = TryGetStudioPath();
             var currentDomain = AppDomain.CurrentDomain;
             currentDomain.AssemblyResolve += currentDomain_AssemblyResolve;
         }
@@ -56,8 +56,8 @@ namespace Studio.AssemblyResolver
 
         private Assembly currentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
         {
-            if (string.IsNullOrEmpty(AssemblyResolver.StudioPath)) return null;
-            var folderPath = Path.GetDirectoryName(AssemblyResolver.StudioPath);
+            if (string.IsNullOrEmpty(global::StudioAssemblyResolver.AssemblyResolver.StudioPath)) return null;
+            var folderPath = Path.GetDirectoryName(global::StudioAssemblyResolver.AssemblyResolver.StudioPath);
             if (folderPath == null) return null;
             var assemblyPath = Path.Combine(folderPath, new AssemblyName(args.Name).Name + ".dll");
             if (!File.Exists(assemblyPath)) return null;

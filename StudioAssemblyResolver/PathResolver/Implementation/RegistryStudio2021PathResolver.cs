@@ -1,4 +1,4 @@
-namespace Studio.AssemblyResolver.PathResolver.Implementation
+namespace StudioAssemblyResolver.PathResolver.Implementation
 {
     internal class RegistryStudio2021PathResolver : AbstractRegistryPathResolver
     {

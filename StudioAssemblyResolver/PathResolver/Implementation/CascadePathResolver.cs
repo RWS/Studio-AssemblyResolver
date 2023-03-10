@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Studio.AssemblyResolver.PathResolver.Implementation
+namespace StudioAssemblyResolver.PathResolver.Implementation
 {
     internal class CascadePathResolver : IPathResolver
     {

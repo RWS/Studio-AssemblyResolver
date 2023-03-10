@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Studio.AssemblyResolver.PathResolver.Implementation
+namespace StudioAssemblyResolver.PathResolver.Implementation
 {
     internal class DefaultStudio2014PathResolver : IPathResolver
     {

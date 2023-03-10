@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Studio.AssemblyResolver.PathResolver.Implementation
+﻿namespace StudioAssemblyResolver.PathResolver.Implementation
 {
     internal class RegistryStudio2019PathResolver: AbstractRegistryPathResolver
     {
