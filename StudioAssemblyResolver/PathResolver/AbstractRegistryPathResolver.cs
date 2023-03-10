@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using Microsoft.Win32;
 
-namespace StudioAssemblyResolver.PathResolver
+namespace RWS_StudioAssemblyResolver.PathResolver
 {
     public abstract class AbstractRegistryPathResolver : IPathResolver
     {

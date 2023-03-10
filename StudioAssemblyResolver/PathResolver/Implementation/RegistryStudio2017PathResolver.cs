@@ -1,4 +1,4 @@
-﻿namespace StudioAssemblyResolver.PathResolver.Implementation
+﻿namespace RWS_StudioAssemblyResolver.PathResolver.Implementation
 {
     internal class RegistryStudio2017PathResolver: AbstractRegistryPathResolver
     {
