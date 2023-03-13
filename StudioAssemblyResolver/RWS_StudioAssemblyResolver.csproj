@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net46;net47;net472;net48</TargetFrameworks>
-    <Authors>Trados AppStore Team</Authors>
+    <Authors>SDL, Trados AppStore Team</Authors>
     <Company>SDL</Company>
     <Product>Studio Assembly Resolver</Product>
     <Description>A library that resolves Trados Studio assemblied dependencies at runtime. Used for developing standalone applications on top of Trados Studio APIs.</Description>
