@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace RWS_StudioAssemblyResolver.PathResolver.Implementation
+namespace Rws.StudioAssemblyResolver.PathResolver.Implementation
 {
     public class DefaultStudio2022PathResolver : IPathResolver
     {

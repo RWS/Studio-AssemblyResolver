@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using RWS_StudioAssemblyResolver.PathResolver;
+using Rws.StudioAssemblyResolver.PathResolver;
 
-namespace RWS_StudioAssemblyResolver
+namespace Rws.StudioAssemblyResolver
 {
     public class AssemblyResolver
     {

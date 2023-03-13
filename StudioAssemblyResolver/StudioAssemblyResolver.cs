@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using RWS_StudioAssemblyResolver.PathResolver;
-using RWS_StudioAssemblyResolver.PathResolver.Implementation;
+using Rws.StudioAssemblyResolver.PathResolver;
+using Rws.StudioAssemblyResolver.PathResolver.Implementation;
 
-namespace RWS_StudioAssemblyResolver
+namespace Rws.StudioAssemblyResolver
 {
     public class StudioAssemblyResolver
     {
@@ -24,7 +24,7 @@ namespace RWS_StudioAssemblyResolver
 
         public void Resolve()
         {
-            global::RWS_StudioAssemblyResolver.AssemblyResolver.StudioPath = TryGetStudioPath();
+            global::Rws.StudioAssemblyResolver.AssemblyResolver.StudioPath = TryGetStudioPath();
             var currentDomain = AppDomain.CurrentDomain;
             currentDomain.AssemblyResolve += currentDomain_AssemblyResolve;
         }
@@ -56,8 +56,8 @@ namespace RWS_StudioAssemblyResolver
 
         private Assembly currentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
         {
-            if (string.IsNullOrEmpty(global::RWS_StudioAssemblyResolver.AssemblyResolver.StudioPath)) return null;
-            var folderPath = Path.GetDirectoryName(global::RWS_StudioAssemblyResolver.AssemblyResolver.StudioPath);
+            if (string.IsNullOrEmpty(global::Rws.StudioAssemblyResolver.AssemblyResolver.StudioPath)) return null;
+            var folderPath = Path.GetDirectoryName(global::Rws.StudioAssemblyResolver.AssemblyResolver.StudioPath);
             if (folderPath == null) return null;
             var assemblyPath = Path.Combine(folderPath, new AssemblyName(args.Name).Name + ".dll");
             if (!File.Exists(assemblyPath)) return null;

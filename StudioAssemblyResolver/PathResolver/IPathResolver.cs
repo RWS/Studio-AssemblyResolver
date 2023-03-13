@@ -1,4 +1,4 @@
-﻿namespace RWS_StudioAssemblyResolver.PathResolver
+﻿namespace Rws.StudioAssemblyResolver.PathResolver
 {
     public interface IPathResolver
     {

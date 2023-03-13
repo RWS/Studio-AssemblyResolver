@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace RWS_StudioAssemblyResolver.PathResolver.Implementation
+namespace Rws.StudioAssemblyResolver.PathResolver.Implementation
 {
     internal class DefaultPathSpecification : IPathSpecification
     {

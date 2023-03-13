@@ -1,4 +1,4 @@
-﻿namespace RWS_StudioAssemblyResolver.PathResolver.Implementation
+﻿namespace Rws.StudioAssemblyResolver.PathResolver.Implementation
 {
     public class RegistryStudio2022PathResolver : AbstractRegistryPathResolver
     {
