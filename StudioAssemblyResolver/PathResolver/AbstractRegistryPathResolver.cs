@@ -23,15 +23,33 @@ namespace Rws.StudioAssemblyResolver.PathResolver
                 var regex = new Regex("\\d+");
                 var match = regex.Match(studioVersion);
 
-                var registryPath = int.TryParse(match.ToString(), out var versionNo) && versionNo > 16
-                    ? $"SOFTWARE\\Wow6432Node\\Trados\\{studioVersion}"
-                    : Environment.Is64BitOperatingSystem
+                int.TryParse(match.ToString(), out var versionNo);
+
+                var registryPath = string.Empty;
+
+                RegistryKey registryKey;
+
+                if (versionNo > 18)
+                {
+                    registryPath = $@"SOFTWARE\Trados\{studioVersion}";
+                    registryKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64)
+                                             .OpenSubKey(registryPath);
+                }
+                else if (versionNo > 16)
+                {
+                    registryPath = $@"SOFTWARE\Wow6432Node\Trados\{studioVersion}";
+                    registryKey = Registry.LocalMachine.OpenSubKey(registryPath);
+                }
+                else
+                {
+                    registryPath = Environment.Is64BitOperatingSystem
                         ? $@"{InstallLocation64Bit}\{studioVersion}"
                         : $@"{InstallLocation32Bit}\{studioVersion}";
-                
+                    registryKey = Registry.LocalMachine.OpenSubKey(registryPath);
+                }
 
-                var registryKey = Registry.LocalMachine.OpenSubKey(registryPath);
-                if (registryKey != null) path = registryKey.GetValue(InstallLocationKey,false) as string;
+                if (registryKey != null)
+                    path = registryKey.GetValue(InstallLocationKey, false) as string;
             }
             catch (Exception)
             {
